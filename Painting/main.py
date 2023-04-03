@@ -1,39 +1,31 @@
-import colorgram
-import turtle as t
-import random
+from turtle import Turtle, Screen
+
+my_turtle = Turtle()
+screen = Screen()
 
 
-def draw_line(x, y):
-    for _ in range(11):
-        my_turtle.dot(20, random.choice(rgb_colors))
-        my_turtle.forward(50)
-        my_turtle.dot(20, random.choice(rgb_colors))
-
-    my_turtle.setx(x)
-    my_turtle.sety(y + 50)
+def forward():
+    my_turtle.forward(10)
 
 
-rgb_colors = []
-colors = colorgram.extract(
-    '/home/iosif/python/python_bootcamp_Udemy/day-18/painting/image.jpg', 30)
-for color in colors:
-    rgb_colors.append(color.rgb)
-
-my_turtle = t.Turtle()
-
-my_turtle.penup()
-my_turtle.hideturtle()
-my_turtle.sety(-300)
-my_turtle.setx(-300)
-
-t.colormode(255)
-
-print(my_turtle.xcor())
-
-for i in range(10):
-
-    draw_line(x=my_turtle.xcor(), y=my_turtle.ycor())
+def backwards():
+    my_turtle.backward(10)
 
 
-screen = t.Screen()
+def counter_clockwise():
+    my_turtle.left(10)
+
+
+def clockwise():
+    my_turtle.right(10)
+
+
+screen.listen()
+
+screen.onkey(fun=forward, key="w")
+screen.onkey(fun=backwards, key="s")
+screen.onkey(fun=counter_clockwise, key="a")
+screen.onkey(fun=clockwise, key="d")
+screen.onkey(fun=screen.reset, key="c")
+
 screen.exitonclick()

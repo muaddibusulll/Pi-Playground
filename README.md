@@ -22,16 +22,40 @@ All kind of contributions are welcome. 😃
 Here you can see the structure of the repo for convenient purposes.
 
     ├── Other Projects
-    ├── Blackjack
-    │   ├── art.py
-    │   └── BlackJack.py
-    ├── GuessingGame
-    │   ├── GuessingGame.py
-    │   └── logo.py
-    └── HigherLowerGame
-        ├── art.py
-        ├── game_data.py
-        └── HigherLowerGame.py
+    │   ├── Blackjack
+    │   │   ├── art.py
+    │   │   └── BlackJack.py
+    │   ├── GuessingGame
+    │   │   ├── GuessingGame.py
+    │   │   └── logo.py
+    │   ├── HigherLowerGame
+    │   │   ├── art.py
+    │   │   ├── game_data.py
+    │   │   └── HigherLowerGame.py
+    │   └── README.md
+    ├── Painting
+    │   └── main.py
+    ├── Painting Art Coppy
+    │   ├── image.jpg
+    │   └── main.py
+    ├── Quiz Game
+    │   ├── data.py
+    │   ├── main.py
+    │   ├── __pycache__
+    │   │   ├── data.cpython-310.pyc
+    │   │   ├── question_model.cpython-310.pyc
+    │   │   └── quiz_brain.cpython-310.pyc
+    │   ├── question_model.py
+    │   └── quiz_brain.py
+    ├── Racing
+    │   └── main.py
+    ├── README.md
+    └── SnakeGame
+        ├── main.py
+        ├── __pycache__
+        │   └── snake.cpython-310.pyc
+        ├── README.md
+        └── snake.py
 
 I would like to mention that each project has each own documentation. With some explanations of the code.
 

@@ -1,6 +1,6 @@
 # Pong Game 🏓
 
-![alt text](/Pi-Playground/ReadMe%20images/pongImage.png)
+![alt text](https://github.com/sifisKoen/Pi-Playground/blob/main/ReadMe%20images/pongImage.png)
 
 This is a classic Pong Game
 

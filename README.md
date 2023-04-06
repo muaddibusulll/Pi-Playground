@@ -56,6 +56,8 @@ Here you can see the structure of the repo for convenient purposes.
         │   └── snake.cpython-310.pyc
         ├── README.md
         └── snake.py
+        └── snakeFood.py
+        └── scoreboard.py
 
 I would like to mention that each project has each own documentation. With some explanations of the code.
 

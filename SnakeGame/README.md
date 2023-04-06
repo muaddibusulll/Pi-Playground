@@ -35,7 +35,7 @@ Each of these lives are our **snake game** classes.
 - snake.py
   - Is our let's say main class where the snake creates, move, and extends it self.
 - scoreboard.py
-  - Is our class witch is in charge to keep track of the players score write this score on the creen and when the player lose the game report that to the player.
+  - Is our class witch is in charge to keep track of the players score write this score on the screen and when the player lose the game report that to the player.
 - snakeFood.py
   - Is our class where the food of the snake creates and print it self to our screen in a random position
 - main.py

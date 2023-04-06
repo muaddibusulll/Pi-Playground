@@ -1,6 +1,6 @@
 # Snake Game 🐍
 
-![alt text](/Pi-Playground/SnakeGame/snakeImage.png)
+![alt text](https://github.com/sifisKoen/Pi-Playground/blob/main/ReadMe%20images/snakeImage.png)
 
 This is a classic snake game.
 

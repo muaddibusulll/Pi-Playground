@@ -1,6 +1,7 @@
 from turtle import Turtle, Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 
 RIGHT_PUDDLE_POSITION = [350, 0]
@@ -12,6 +13,8 @@ screen.bgcolor("black")
 screen.title("PongGame")
 screen.tracer(0)
 screen.listen(0)
+
+scoreboard = Scoreboard()
 
 game_is_on = True
 
@@ -45,10 +48,12 @@ while game_is_on:
     if (ball.distance(right_paddle) < 50 and ball.xcor() > 320) or (ball.distance(left_paddle) < 50 and ball.xcor() < -320):
         ball.collision_with_the_puddle()
 
-    # TODO: The if's so to know when the ball passed the player
     if ball.xcor() > 380:
-        ball.reset()
+        ball.reset_position()
+        scoreboard.increase_score("puddle_1")
+    elif ball.xcor() < -380:
+        ball.reset_position()
+        scoreboard.increase_score("puddle_2")
 
 
-# or ball.distance(left_paddle) < 50
 screen.exitonclick()

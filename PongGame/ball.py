@@ -11,6 +11,8 @@ class Ball(Turtle):
         self.shape("circle")
         self.ball_x_cor = + 10
         self.ball_y_cor = -  10
+        self.initial_ball_speed = 3
+        self.speed(self.initial_ball_speed)
 
     def ball_moving(self):
         """With this function we move the ball"""
@@ -35,9 +37,9 @@ class Ball(Turtle):
     def collision_with_the_puddle(self):
 
         self.ball_x_cor = self.ball_x_cor * -1
+        self.initial_ball_speed += 1
+        print(self.initial_ball_speed)
 
-    # TODO: the reset function so when the player loses the ball the ball will
-    # reset to it's initial position in the center ot the screen
     def reset_position(self):
-
-        self.goto()
+        self.goto(x=0,  y=0)
+        self.collision_with_the_puddle()

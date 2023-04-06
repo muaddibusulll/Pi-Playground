@@ -35,7 +35,7 @@ Here you can see the structure of the repo for convenient purposes.
     │   └── README.md
     ├── Painting
     │   └── main.py
-    ├── Painting Art Coppy
+    ├── Painting Art Copy
     │   ├── image.jpg
     │   └── main.py
     ├── Quiz Game

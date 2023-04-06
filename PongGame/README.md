@@ -1,6 +1,6 @@
 # Pong Game 🏓
 
-![alt text](/Pi-Playground/PongGame/Screenshot%20from%202023-04-06%2022-30-21.png)
+![alt text](/Pi-Playground/ReadMe%20images/pongImage.png)
 
 This is a classic Pong Game
 

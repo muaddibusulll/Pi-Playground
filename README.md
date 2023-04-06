@@ -38,6 +38,17 @@ Here you can see the structure of the repo for convenient purposes.
     ├── Painting Art Copy
     │   ├── image.jpg
     │   └── main.py
+    ├── PongGame
+    │   ├── ball.py
+    │   ├── main.py
+    │   ├── paddle.py
+    │   ├── __pycache__
+    │   │   ├── ball.cpython-310.pyc
+    │   │   ├── paddle.cpython-310.pyc
+    │   │   └── scoreboard.cpython-310.pyc
+    │   ├── README.md
+    │   ├── scoreboard.py
+    │   └── Screenshot from 2023-04-06 22-30-21.png
     ├── Quiz Game
     │   ├── data.py
     │   ├── main.py
@@ -51,13 +62,17 @@ Here you can see the structure of the repo for convenient purposes.
     │   └── main.py
     ├── README.md
     └── SnakeGame
+        ├── food.jpg
         ├── main.py
         ├── __pycache__
-        │   └── snake.cpython-310.pyc
+        │   ├── scoreboard.cpython-310.pyc
+        │   ├── snake.cpython-310.pyc
+        │   └── snakeFood.cpython-310.pyc
         ├── README.md
+        ├── scoreboard.py
+        ├── snakeFood.py
+        ├── snakeImage.png
         └── snake.py
-        └── snakeFood.py
-        └── scoreboard.py
 
 I would like to mention that each project has each own documentation. With some explanations of the code.
 

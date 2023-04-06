@@ -1,12 +1,14 @@
 # Snake Game 🐍
 
+![alt text](/Pi-Playground/SnakeGame/snakeImage.png)
+
 This is a classic snake game.
 
 ## Tools 🪛
 
 I used a build in Python library **Turtle** for my graphics.
 
-## How to run it
+## How to run it ⚙️
 
 It's very simple
 
@@ -15,10 +17,10 @@ It's very simple
   - Use `git clone <the name of the repo>`
 
 * Now you should have the whole repository in your machine.
-  - Now go to the /SnakeGame directory and open your terminal.
+  - Now go to the **/SnakeGame** directory and open your terminal.
     - From your terminal type, `python3 main.py`
 
-## The structure of the project
+## The structure of the project 📚
 
     ├── main.py
     ├── __pycache__
@@ -28,9 +30,9 @@ It's very simple
     └── snakeFood.py
     └── scoreboard.py
 
-## Class Explanation
+## Class Explanation 📖
 
-Each of these lives are our **snake game** classes.
+Each of these files are our **snake game** classes.
 
 - snake.py
   - Is our let's say main class where the snake creates, move, and extends it self.

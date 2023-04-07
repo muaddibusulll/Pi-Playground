@@ -21,6 +21,24 @@ All kind of contributions are welcome. 😃
 
 Here you can see the structure of the repo for convenient purposes.
 
+    ├── CoffeeMachine
+    │   ├── main.py
+    │   ├── menu.py
+    │   └── __pycache__
+    │       └── menu.cpython-310.pyc
+    ├── Cross Game
+    │   ├── car_manager.py
+    │   ├── cars.py
+    │   ├── main.py
+    │   ├── player.py
+    │   ├── __pycache__
+    │   │   ├── car.cpython-310.pyc
+    │   │   ├── car_manager.cpython-310.pyc
+    │   │   ├── cars.cpython-310.pyc
+    │   │   ├── player.cpython-310.pyc
+    │   │   └── scoreboard.cpython-310.pyc
+    │   ├── README.md
+    │   └── scoreboard.py
     ├── Other Projects
     │   ├── Blackjack
     │   │   ├── art.py
@@ -47,8 +65,7 @@ Here you can see the structure of the repo for convenient purposes.
     │   │   ├── paddle.cpython-310.pyc
     │   │   └── scoreboard.cpython-310.pyc
     │   ├── README.md
-    │   ├── scoreboard.py
-    │   └── Screenshot from 2023-04-06 22-30-21.png
+    │   └── scoreboard.py
     ├── Quiz Game
     │   ├── data.py
     │   ├── main.py
@@ -71,8 +88,8 @@ Here you can see the structure of the repo for convenient purposes.
         ├── README.md
         ├── scoreboard.py
         ├── snakeFood.py
-        ├── snakeImage.png
         └── snake.py
+
 
 I would like to mention that each project has each own documentation. With some explanations of the code.
 

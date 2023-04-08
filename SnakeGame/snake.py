@@ -46,6 +46,19 @@ class Snake:
     def draw_the_head(self):
         self.snake_head.color("green")
 
+    # Rest the snake when it dies.
+    def snake_reset(self):
+        """A function where the snake resets when
+        it dies"""
+        for body_piece in self.snake_body:
+            body_piece.goto(1000, 1000)
+        self.snake_body.clear()
+        self.snake_creation()
+        self.snake_head = self.snake_body[0]
+        self.draw_the_head()
+
+    # Moving functions
+
     def up(self):
         if self.snake_head.heading() != 270:
             self.snake_head.setheading(90)

@@ -1,6 +1,6 @@
 # Snake Game 🐍
 
-![alt text](https://github.com/sifisKoen/Pi-Playground/blob/main/ReadMe%20images/NewSnakeHightScore.png)
+![alt text](https://github.com/sifisKoen/Pi-Playground/blob/main/ReadMe%20images/NewSnakeHighScore.png)
 
 This is a classic snake game with high scoreboard track.
 The high score of our game is saved in a file called **game_data.txt**.

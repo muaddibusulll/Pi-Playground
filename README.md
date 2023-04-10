@@ -1,5 +1,7 @@
 # Pi-Playground
 
+![GitHub repo file count][files] ![GitHub repo size][repo_size] ![GitHub top language][language]
+
 ## Welcome to my playground 🖐️
 
 - First of all let's answer the question of **what?**
@@ -78,19 +80,28 @@ Here you can see the structure of the repo for convenient purposes.
     ├── Racing
     │   └── main.py
     ├── README.md
-    └── SnakeGame
-        ├── food.jpg
-        ├── main.py
-        ├── __pycache__
-        │   ├── scoreboard.cpython-310.pyc
-        │   ├── snake.cpython-310.pyc
-        │   └── snakeFood.cpython-310.pyc
-        ├── README.md
-        ├── scoreboard.py
-        ├── snakeFood.py
-        └── snake.py
-
+    ├── SnakeGame
+    |   ├── food.jpg
+    |   ├── main.py
+    |   ├── __pycache__
+    |   │   ├── scoreboard.cpython-310.pyc
+    |   │   ├── snake.cpython-310.pyc
+    |   │   └── snakeFood.cpython-310.pyc
+    |   ├── README.md
+    |   ├── scoreboard.py
+    |   ├── snakeFood.py
+    |   └── snake.py
+    ├── 50_states.csv
+    ├── states_img.gif
+    ├── state.py
+    ├── main.py
+    ├── __pycache__
+    │   ├── country.cpython-310.pyc
+    │   └── questionboard.cpython-310.pyc
+    └── README.md
 
 I would like to mention that each project has each own documentation. With some explanations of the code.
 
-![GitHub repo file count](https://img.shields.io/github/directory-file-count/sifisKoen/Pi-Playground?style=plastic)
+[files]: https://img.shields.io/github/directory-file-count/sifisKoen/Pi-Playground
+[repo_size]: https://img.shields.io/github/repo-size/sifisKoen/Pi-Playground
+[language]: https://img.shields.io/github/languages/top/sifisKoen/Pi-Playground

@@ -1,5 +1,7 @@
 # Converter
 
+<img src="https://w7.pngwing.com/pngs/679/344/png-transparent-wing-ide-integrated-development-environment-python-computer-software-eric-raspberry-miscellaneous-monochrome-computer-program.png" width="50" height="50">
+
 This is a simple converter just to make me familiar with the **tkinter** python library. And how to manipulate the widgets.
 
 ## Tools 🪛

@@ -3,15 +3,15 @@ import tkinter
 
 def convert_miles_to_kilometers():
     miles = float(miles_entry.get())
-    convert = str(round(miles / 0.62137))
-    kilometers_output.config(text=convert)
+    kilometers = str(round(miles / 0.62137))
+    kilometers_output.config(text=kilometers)
 
 
 LABELS_FONT = ("Arial", 15)
 
 # Window configuration
 window = tkinter.Tk()
-window.title("My first program")
+window.title("Miles to Kilometers Converter")
 window.minsize(width=300, height=150)
 window.config(padx=30, pady=30)
 

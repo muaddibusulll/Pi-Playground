@@ -1,5 +1,7 @@
 # US States Quiz Game ⛳
 
+![Quiz Image](https://github.com/sifisKoen/Pi-Playground/blob/main/ReadMe%20images/Screenshot%20from%202023-04-10%2020-51-09.png)
+
 This is a quiz game where the user needs to think and answer all the US States so to unlock them in the map.
 
 ## Tools 🪛

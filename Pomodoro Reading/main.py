@@ -6,12 +6,28 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 0.1
-SHORT_BREAK_MIN = 0.1
+WORK_MIN = 25
+SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 repetitions = 0
+# We create clock_times as a global variable
+# Because we need to start and stop the clock
+# This process happening in two different functions
+# count_down() and reset_timer()
+clock_timer = None
 
 # ---------------------------- TIMER RESET ------------------------------- #
+
+
+def reset_timer():
+
+    window.after_cancel(clock_timer)
+    canvas.itemconfig(timer_text, text="00:00")
+    title_label.config(text="Timer")
+    check_mark.config(text="")
+    global repetitions
+    repetitions = 0
+
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 
@@ -52,7 +68,8 @@ def count_down(count):
 
     canvas.itemconfig(timer_text, text=f"{minutes}:{seconds}")
     if count > 0:
-        window.after(1000, count_down, count - 1)
+        global clock_timer
+        clock_timer = window.after(1000, count_down, count - 1)
     else:
         start_timer()
         check_marks_user_has = ""
@@ -98,7 +115,8 @@ starting_timer_button = tkinter.Button(
 starting_timer_button.grid(column=0, row=2)
 
 # Reset Button Creation
-reset_timer_button = tkinter.Button(text="Reset", highlightthickness=0)
+reset_timer_button = tkinter.Button(
+    text="Reset", highlightthickness=0, command=reset_timer)
 reset_timer_button.grid(column=2, row=2)
 
 window.mainloop()

@@ -100,7 +100,7 @@ window.title("Pomodoro Reading")
 window.config(padx=100, pady=50, background=YELLOW)
 
 # Canvas creation
-# We use this highlightthickness=0 for to hif the border of the canvas
+# We use this highlightthickness=0 for to hide the border of the canvas
 # Stack overflow thread https://stackoverflow.com/questions/4310489/how-do-i-remove-the-light-grey-border-around-my-canvas-widget
 canvas = tkinter.Canvas(width=200, height=224,
                         background=YELLOW, highlightthickness=0)

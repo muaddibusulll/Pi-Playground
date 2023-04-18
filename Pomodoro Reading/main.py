@@ -9,6 +9,7 @@ FONT_NAME = "Courier"
 WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
+# -------------------------- GLOBAL VARIABLES ----------------------------- #
 repetitions = 0
 # We create clock_times as a global variable
 # Because we need to start and stop the clock
@@ -49,9 +50,11 @@ def start_timer():
         count_down(working_seconds)
     elif repetitions % 8 == 0:
         title_label.config(text="Long 20min Session", foreground=RED)
+        popup_message("Take a large 20 minutes break")
         count_down(long_brake_seconds)
     else:
         title_label.config(text="Short 5min Session", foreground=PINK)
+        popup_message("Take a small 5 minutes break")
         count_down(short_brake_seconds)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
@@ -77,6 +80,18 @@ def count_down(count):
         for sessions in range(working_sessions):
             check_marks_user_has += "✔"
         check_mark.configure(text=check_marks_user_has)
+
+# ---------------------------- POP UP MESSAGE ------------------------------- #
+
+
+def popup_message(text_message):
+    popup = tkinter.Tk()
+    popup.wm_title("Break")
+    label = tkinter.Label(popup, text=text_message, font=FONT_NAME)
+    label.pack(side="top", fill="x", pady=20)
+    popup_button = tkinter.Button(popup, text="Okay", command=popup.destroy)
+    popup_button.pack()
+    # Don't use main loop here will stop the timer
 
 
 # ---------------------------- UI SETUP ------------------------------- #

@@ -1,5 +1,7 @@
 # Password Creator and Manager 🔐
 
+![alter text](https://github.com/sifisKoen/Pi-Playground/blob/main/ReadMe%20images/PasswordManagerIMG.png)
+
 This is UI Python program witch creates a random password for a web site and save the name of the site as well as the password and the email address of the user into a txt file **locally** to user's computer.
 
 The name of the file is **data.txt** witch very easily can be change from the code.

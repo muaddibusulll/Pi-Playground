@@ -1,5 +1,7 @@
 # Pomodoro Reading ⏰
 
+![alter text](https://github.com/sifisKoen/Pi-Playground/blob/main/ReadMe%20images/PomodoroReadingIMG.png)
+
 This is UI Python program witch I created for my convenient. This program is very good for people who want to read and follow Pomodoro Reading technique for their reading sessions.
 
 If someone wants to lead more: [Pomodoro](pomodorlink)

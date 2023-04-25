@@ -4,6 +4,7 @@ from tkinter import messagebox
 import string
 import random
 import pyperclip
+import json
 
 # Constants
 WEBSITE_LABEL_TEXT = "Website:"
@@ -85,29 +86,54 @@ def confirmation_message_box(website, email, password):
         title="Confirm", message=f"These details are correct?\nWebsite: {website}\nEmail: {email}\nPassword: {password}\nIs it ok to save?")
 
 
-def file():
-    my_passwords_file = open("data.txt", "a")
-    return my_passwords_file
+def read_file():
+    return open("data.json", "r")
+
+
+def write_file():
+    return open("data.json", "w")
+
+
+def open_file():
+    return open("data.json")
+
+
+def write_to_file_new_data(new_data):
+    try:
+        # Read old data
+        data = json.load(read_file())
+        # Update the old data
+        data.update(new_data)
+        # Save the old data to file
+        json.dump(data, write_file(), indent=4)
+    except FileNotFoundError:
+        # Create a new file
+        json.dump(new_data, write_file(), indent=4)
+
 
 # LINK: https://tkdocs.com/tutorial/widgets.html#entry
 
-
 def save_data_to_file():
 
-    website = website_import_text.get()
+    website = website_import_text.get().capitalize()
     email_username = email_username_import_text.get()
     password = password_import_text.get()
+    new_data = {
+        website: {
+            "email": email_username,
+            "password": password,
+        }}
 
     if (is_a_field_blank(website=website, email=email_username, password=password) == True):
         return
 
     if (confirmation_message_box(website=website, email=email_username, password=password) == True):
-        file().write(
-            f"{website.capitalize()} | {email_username} | {password}\n")
-        file().close()
-        print(f"{website} | {email_username} | {password}")
+
+        write_to_file_new_data(new_data=new_data)
 
         empty_fields()
+
+        print(f"{website} | {email_username} | {password}")
 
 
 # ---------------------------- UI SETUP ------------------------------- #

@@ -14,6 +14,49 @@ GENERATE_PASSWORD_BUTTON_TEXT = "Generate Password"
 ADD_BUTTON_TEXT = "Add"
 FONT_NAME = "Courier"
 FONT = (FONT_NAME, 12)
+SEARCH_TEXT = "Search"
+
+# ---------------------------- DATA SEARCH ------------------------------- #
+
+
+def is_website_filed_empty(website):
+
+    if (website == ""):
+        messagebox.showwarning(
+            title="Warning", message="Please enter a website")
+        return True
+    else:
+        return False
+
+
+def find_data(website):
+
+    try:
+        all_data = json.load(read_file())
+        return all_data[website]
+    except KeyError:
+        messagebox.showerror(
+            title=website, message=f"{website} is not available")
+
+
+def output_data(website, data_dictionary):
+
+    email = data_dictionary['email']
+    password = data_dictionary['password']
+    messagebox.showinfo(
+        title=website, message=f"Email: {email}\nPassword: {password}")
+
+
+def search_for_data():
+
+    website = website_import_text.get().capitalize()
+
+    if is_website_filed_empty(website) == False:
+        pass
+
+    output_data(website, find_data(website))
+    print(find_data(website))
+
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -57,17 +100,17 @@ def password_creation():
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 
-def is_a_field_blank(website, email, password):
+def is_a_field_blank(*data):
 
-    if (website == ""):
+    if (data[0] == ""):
         messagebox.showwarning(
             title="Warning", message="Please enter a website")
         return True
-    elif (password == ""):
+    elif (data[1] == ""):
         messagebox.showwarning(
             title="Warning", message="Please enter a password")
         return True
-    elif (email == ""):
+    elif (data[2] == ""):
         messagebox.showwarning(
             title="Warning", message="Please enter an email address")
         return True
@@ -124,7 +167,7 @@ def save_data_to_file():
             "password": password,
         }}
 
-    if (is_a_field_blank(website=website, email=email_username, password=password) == True):
+    if (is_a_field_blank(website, email_username, password) == True):
         return
 
     if (confirmation_message_box(website=website, email=email_username, password=password) == True):
@@ -155,8 +198,11 @@ website_label.grid(row=1, column=0)
 
 website_import_text = tkinter.Entry(width=35)
 website_import_text.focus()
-website_import_text.grid(row=1, column=1, columnspan=2, sticky="EW")
+website_import_text.grid(row=1, column=1, sticky="EW")
 
+search_data_through_website = tkinter.Button(
+    text=SEARCH_TEXT, command=search_for_data)
+search_data_through_website.grid(row=1, column=2, sticky="EW")
 
 # -------------------- Email/Username import area -------------------- #
 

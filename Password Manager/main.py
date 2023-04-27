@@ -52,10 +52,9 @@ def search_for_data():
     website = website_import_text.get().capitalize()
 
     if is_website_filed_empty(website) == False:
-        pass
+        return
 
     output_data(website, find_data(website))
-    print(find_data(website))
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #

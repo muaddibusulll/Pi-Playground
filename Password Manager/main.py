@@ -1,10 +1,12 @@
 import tkinter
 from tkinter import ttk
 from tkinter import messagebox
+from tkinter import Menu
 import string
 import random
 import pyperclip
 import json
+import login
 
 # Constants
 WEBSITE_LABEL_TEXT = "Website:"
@@ -15,6 +17,8 @@ ADD_BUTTON_TEXT = "Add"
 FONT_NAME = "Courier"
 FONT = (FONT_NAME, 12)
 SEARCH_TEXT = "Search"
+
+login_window = login.LogIn()
 
 # ---------------------------- DATA SEARCH ------------------------------- #
 
@@ -51,7 +55,7 @@ def search_for_data():
 
     website = website_import_text.get().capitalize()
 
-    if is_website_filed_empty(website) == False:
+    if is_website_filed_empty(website) == True:
         return
 
     output_data(website, find_data(website))
@@ -192,43 +196,64 @@ canvas.grid(row=0, column=1)
 
 # -------------------- Website import area -------------------- #
 
+# Label
 website_label = tkinter.Label(text=WEBSITE_LABEL_TEXT, font=FONT)
 website_label.grid(row=1, column=0)
 
+# Entry
 website_import_text = tkinter.Entry(width=35)
 website_import_text.focus()
 website_import_text.grid(row=1, column=1, sticky="EW")
 
+# Button
 search_data_through_website = tkinter.Button(
     text=SEARCH_TEXT, command=search_for_data)
 search_data_through_website.grid(row=1, column=2, sticky="EW")
 
 # -------------------- Email/Username import area -------------------- #
 
+# Label
 email_username_label = tkinter.Label(text=EMAIL_USERNAME_TEXT, font=FONT)
 email_username_label.grid(row=2, column=0)
 
-
+# Entry
 email_username_import_text = tkinter.Entry(width=35)
 email_username_import_text.insert(0, "randomMail@gmail.com")
 email_username_import_text.grid(row=2, column=1, columnspan=2, sticky="EW")
 
 # -------------------- Password import area -------------------- #
 
+# Label
 password_label = tkinter.Label(text=PASSWORD_TEXT, font=FONT)
 password_label.grid(row=3, column=0)
 
+# Entry
 password_import_text = tkinter.Entry(width=21)
 password_import_text.grid(row=3, column=1, sticky="EW")
 
+# Button
 generate_password_button = tkinter.Button(
     text=GENERATE_PASSWORD_BUTTON_TEXT, command=password_creation)
 generate_password_button.grid(row=3, column=2, sticky="EW")
 
 # -------------------- Add Button import area -------------------- #
 
+# Button
 add_button = tkinter.Button(
     text=ADD_BUTTON_TEXT, width=36, command=save_data_to_file)
 add_button.grid(row=4, column=1, columnspan=2, sticky="EW")
+
+# -------------------- Menu Bar import area -------------------- #
+menu_bar = Menu(window)
+options = Menu(menu_bar, tearoff=0)
+options.add_command(label="Saved Passwords")
+options.add_command(label="Back")
+
+options.add_separator()
+
+options.add_command(label="Exit", command=window.quit)
+
+menu_bar.add_cascade(label="Options", menu=options)
+window.config(menu=menu_bar)
 
 width = window.mainloop()

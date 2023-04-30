@@ -1,7 +1,7 @@
-import tkinter
+from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-from tkinter import Menu
+# from tkinter import Menu
 import string
 import random
 import pyperclip
@@ -96,7 +96,7 @@ def password_creation():
 
     new_password = ''.join(password_shuffled_list)
 
-    password_import_text.insert(tkinter.END, string=new_password)
+    password_import_text.insert(END, string=new_password)
     pyperclip.copy(new_password)
 
 
@@ -181,79 +181,143 @@ def save_data_to_file():
 
         print(f"{website} | {email_username} | {password}")
 
+# ---------------------------- MENU BAR ------------------------------- #
+
+
+def copy_password(password):
+    pyperclip.copy(password)
+
+
+def create_menu(saved_password_window):
+    row_for_labels = 2
+
+    try:
+        with open("data.json") as saved_passwords_file:
+            data = json.load(saved_passwords_file)
+    except json.decoder.JSONDecodeError or FileNotFoundError:
+        no_file_found_label = Label(
+            saved_password_window, text="No saved data for now !", fg="red")
+        no_file_found_label.grid(row=2, column=2, sticky="EW")
+    else:
+        for website in data:
+            website_name_label = Label(
+                saved_password_window, text=website, fg="blue")
+            website_name_label.grid(
+                row=row_for_labels, column=0, sticky="EW")
+
+            email_username_name_label = Label(
+                saved_password_window, text=data[website]["email"], fg="blue")
+            email_username_name_label.grid(
+                row=row_for_labels, column=2, sticky="EW")
+
+            # Create passwords plus copy functionality
+            password_button = Button(
+                saved_password_window, text=data[website]["password"])
+            password_button.config(command=lambda password_args=password_button: copy_password(
+                (password_args.cget('text'))))
+            password_button.grid(row=row_for_labels, column=4, sticky="EW")
+
+            print(data[website])
+            row_for_labels = row_for_labels + 1
+
+    saved_password_window.mainloop()
+
+
+def saved_password_window_UI():
+    saved_password_window = Tk()
+    saved_password_window.title("My saved passwords")
+    saved_password_window.config(padx=50, pady=50)
+
+    website_label = Label(saved_password_window,
+                          text="Website", fg="blue", font=FONT)
+    website_label.grid(row=0, column=0, columnspan=2,
+                       sticky="EW", padx=10, pady=10)
+
+    email_username_label = Label(
+        saved_password_window, text="Email / Username", fg="blue", font=FONT)
+    email_username_label.grid(
+        row=0, column=2, columnspan=2, sticky="EW", padx=10, pady=10)
+
+    password_label = Label(saved_password_window,
+                           text="Password", fg="blue", font=FONT)
+    password_label.grid(row=0, column=4, columnspan=2,
+                        sticky="EW", padx=10, pady=10)
+
+    create_menu(saved_password_window)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
-window = tkinter.Tk()
+window = Tk()
 window.title("My Password Manager")
 window.config(padx=50, pady=50)
 
 # Create our canvas window
-canvas = tkinter.Canvas(width=200, height=200)
+canvas = Canvas(width=200, height=200)
 # Import our image
-password_logo_image = tkinter.PhotoImage(file="logo.png")
+password_logo_image = PhotoImage(file="logo.png")
 canvas.create_image(100, 100, image=password_logo_image)
 canvas.grid(row=0, column=1)
 
 # -------------------- Website import area -------------------- #
 
 # Label
-website_label = tkinter.Label(text=WEBSITE_LABEL_TEXT, font=FONT)
+website_label = Label(text=WEBSITE_LABEL_TEXT, font=FONT)
 website_label.grid(row=1, column=0)
 
 # Entry
-website_import_text = tkinter.Entry(width=35)
+website_import_text = Entry(width=35)
 website_import_text.focus()
 website_import_text.grid(row=1, column=1, sticky="EW")
 
 # Button
-search_data_through_website = tkinter.Button(
+search_data_through_website = Button(
     text=SEARCH_TEXT, command=search_for_data)
 search_data_through_website.grid(row=1, column=2, sticky="EW")
 
 # -------------------- Email/Username import area -------------------- #
 
 # Label
-email_username_label = tkinter.Label(text=EMAIL_USERNAME_TEXT, font=FONT)
+email_username_label = Label(text=EMAIL_USERNAME_TEXT, font=FONT)
 email_username_label.grid(row=2, column=0)
 
 # Entry
-email_username_import_text = tkinter.Entry(width=35)
+email_username_import_text = Entry(width=35)
 email_username_import_text.insert(0, "randomMail@gmail.com")
 email_username_import_text.grid(row=2, column=1, columnspan=2, sticky="EW")
 
 # -------------------- Password import area -------------------- #
 
 # Label
-password_label = tkinter.Label(text=PASSWORD_TEXT, font=FONT)
+password_label = Label(text=PASSWORD_TEXT, font=FONT)
 password_label.grid(row=3, column=0)
 
 # Entry
-password_import_text = tkinter.Entry(width=21)
+password_import_text = Entry(width=21)
 password_import_text.grid(row=3, column=1, sticky="EW")
 
 # Button
-generate_password_button = tkinter.Button(
+generate_password_button = Button(
     text=GENERATE_PASSWORD_BUTTON_TEXT, command=password_creation)
 generate_password_button.grid(row=3, column=2, sticky="EW")
 
 # -------------------- Add Button import area -------------------- #
 
 # Button
-add_button = tkinter.Button(
+add_button = Button(
     text=ADD_BUTTON_TEXT, width=36, command=save_data_to_file)
 add_button.grid(row=4, column=1, columnspan=2, sticky="EW")
 
 # -------------------- Menu Bar import area -------------------- #
-menu_bar = Menu(window)
-options = Menu(menu_bar, tearoff=0)
-options.add_command(label="Saved Passwords")
+menubar = Menu(window)
+options = Menu(menubar, tearoff=0)
+options.add_command(label="Saved Passwords", command=saved_password_window_UI)
 options.add_command(label="Back")
 
 options.add_separator()
 
 options.add_command(label="Exit", command=window.quit)
+menubar.add_cascade(label="Options", menu=options)
 
-menu_bar.add_cascade(label="Options", menu=options)
-window.config(menu=menu_bar)
+window.config(menu=menubar)
 
-width = window.mainloop()
+window.mainloop()

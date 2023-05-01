@@ -188,6 +188,30 @@ def copy_password(password):
     pyperclip.copy(password)
 
 
+def add_new_components(data, saved_password_window, row_for_labels):
+    for website in data:
+        website_name_label = Label(
+            saved_password_window, text=website, fg="blue")
+        website_name_label.grid(
+            row=row_for_labels, column=0, sticky="EW")
+
+        email_username_name_label = Label(
+            saved_password_window, text=data[website]["email"], fg="blue")
+        email_username_name_label.grid(
+            row=row_for_labels, column=2, sticky="EW")
+
+        # Create passwords plus copy functionality
+        # Using cget so to take the text from the buttons
+        password_button = Button(
+            saved_password_window, text=data[website]["password"])
+        password_button.config(command=lambda password_args=password_button: copy_password(
+            (password_args.cget('text'))))
+        password_button.grid(row=row_for_labels, column=4, sticky="EW")
+
+        print(data[website])
+        row_for_labels = row_for_labels + 1
+
+
 def create_menu(saved_password_window):
     row_for_labels = 2
 
@@ -199,26 +223,7 @@ def create_menu(saved_password_window):
             saved_password_window, text="No saved data for now !", fg="red")
         no_file_found_label.grid(row=2, column=2, sticky="EW")
     else:
-        for website in data:
-            website_name_label = Label(
-                saved_password_window, text=website, fg="blue")
-            website_name_label.grid(
-                row=row_for_labels, column=0, sticky="EW")
-
-            email_username_name_label = Label(
-                saved_password_window, text=data[website]["email"], fg="blue")
-            email_username_name_label.grid(
-                row=row_for_labels, column=2, sticky="EW")
-
-            # Create passwords plus copy functionality
-            password_button = Button(
-                saved_password_window, text=data[website]["password"])
-            password_button.config(command=lambda password_args=password_button: copy_password(
-                (password_args.cget('text'))))
-            password_button.grid(row=row_for_labels, column=4, sticky="EW")
-
-            print(data[website])
-            row_for_labels = row_for_labels + 1
+        add_new_components(data, saved_password_window, row_for_labels)
 
     saved_password_window.mainloop()
 

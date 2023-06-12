@@ -12,11 +12,6 @@ words_data = pandas.read_csv("data/Often_Used_Words_En_Gr_De.csv")
 
 # ---------------------------- MENU BAR ------------------------------- #
 
-
-# def take_the_from_language():
-#     print(.get())
-
-
 def create_menu():
     languages = words_data.to_dict(orient="split")["columns"]
     options_window = Tk()

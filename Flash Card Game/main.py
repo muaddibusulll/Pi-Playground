@@ -31,8 +31,8 @@ def create_menu():
         variable from_language from the selected item from the list.'''
         global from_language
         from_language=from_language_listbox.get(from_language_listbox.curselection())
-        flash_card_canvas.itemconfig(initial_text, text="")
-        flash_card_canvas.itemconfig(initial_text, text=from_language)
+        flash_card_canvas.itemconfig(picked_language, text="")
+        flash_card_canvas.itemconfig(picked_language, text=from_language)
         
     from_language_label = Label(options_window, text="From Language", pady=15, bg=BACKGROUND_COLOR)
     from_language_label.grid(row=0, column=0, sticky="EW")
@@ -85,7 +85,7 @@ flash_card_canvas = Canvas(window, width=800, height=526)
 flash_card_front_image = PhotoImage(file="images/card_front.png")
 flash_card_canvas.create_image(400, 263, image=flash_card_front_image)
 
-initial_text = flash_card_canvas.create_text(400, 150, text=from_language, font=LANGUAGE_FONT)
+picked_language = flash_card_canvas.create_text(400, 150, text=from_language, font=LANGUAGE_FONT)
 word_text = flash_card_canvas.create_text(400, 263, text=random.choice(word_records_dictionary)[from_language], font=WORD_FONT)
 
 flash_card_canvas.config(bg=BACKGROUND_COLOR, highlightthickness=0)

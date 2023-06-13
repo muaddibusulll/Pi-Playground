@@ -29,10 +29,12 @@ def create_menu():
         '''A function where we change the language in order to give the user more options 
         in what language to learn. In this function we just change the value of the global
         variable from_language from the selected item from the list.'''
-        global from_language
+        global from_language, flip_timer
+        window.after_cancel(flip_timer)
         from_language=from_language_listbox.get(from_language_listbox.curselection())
         flash_card_canvas.itemconfig(picked_language, text="")
         flash_card_canvas.itemconfig(picked_language, text=from_language)
+        flip_timer = window.after(3000, func=flip_card)
         
     from_language_label = Label(options_window, text="From Language", pady=15, bg=BACKGROUND_COLOR)
     from_language_label.grid(row=0, column=0, sticky="EW")
@@ -48,8 +50,12 @@ def create_menu():
     to_language_label.grid(row=0, column=3, sticky="EW")
 
     def to_language_list_box_used(event):
-        # TODO: Need to change the actual languages
-        print("To the first list: ", to_language_listbox.get(to_language_listbox.curselection()))
+        global to_language, flip_timer
+        window.after_cancel(flip_timer)
+        to_language=to_language_listbox.get(to_language_listbox.curselection())
+        flash_card_canvas.itemconfig(picked_language, text="")
+        flash_card_canvas.itemconfig(picked_language, text=to_language)
+        flip_timer = window.after(3000, func=flip_card)
         
     to_language_listbox = Listbox(options_window, height=4)
     for language in languages:
@@ -59,34 +65,42 @@ def create_menu():
     
     options_window.mainloop()
 
-# ---------------------------- Random Word Function ------------------------------- #
+# ---------------------------- Pick Random Word  ------------------- #
 
+random_picked_card = {}
 def pick_random_word():
-    if from_language == "Greek":
-        pick_random_word = random.choice(word_records_dictionary)["Greek"]
-        flash_card_canvas.itemconfig(word_text, text=pick_random_word)
-        return pick_random_word
-    elif from_language == "English":
-        pick_random_word = random.choice(word_records_dictionary)["English"]
-        flash_card_canvas.itemconfig(word_text, text=pick_random_word)
-        return random.choice(word_records_dictionary)["English"]
-    else:
-        pick_random_word = random.choice(word_records_dictionary)["German"]
-        flash_card_canvas.itemconfig(word_text, text=pick_random_word)
-        return random.choice(word_records_dictionary)["German"]
+    global random_picked_card, flip_timer
+    window.after_cancel(flip_timer)
+    random_picked_card = random.choice(word_records_dictionary)
+    flash_card_canvas.itemconfig(picked_language, text=from_language, fill="black")
+    flash_card_canvas.itemconfig(word_text, text=random_picked_card[from_language], fill="black")
+    flash_card_canvas.itemconfig(card_background, image=flash_card_front_image)
+    flip_timer = window.after(3000, func=flip_card)
+    
+# ---------------------------- Flip Card ------------------------------ #
+
+def flip_card():
+    flash_card_canvas.itemconfig(picked_language, text=to_language, fill="white" )
+    flash_card_canvas.itemconfig(word_text, text=random_picked_card[to_language], fill="white")
+    flash_card_canvas.itemconfig(card_background, image=flash_card_back_image)
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Flash Card Game")
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
+flip_timer = window.after(3000, func=flip_card)
+
 # Canvas
 flash_card_canvas = Canvas(window, width=800, height=526)
-flash_card_front_image = PhotoImage(file="images/card_front.png")
-flash_card_canvas.create_image(400, 263, image=flash_card_front_image)
 
-picked_language = flash_card_canvas.create_text(400, 150, text=from_language, font=LANGUAGE_FONT)
-word_text = flash_card_canvas.create_text(400, 263, text=random.choice(word_records_dictionary)[from_language], font=WORD_FONT)
+# Flash card
+flash_card_front_image = PhotoImage(file="images/card_front.png")
+flash_card_back_image = PhotoImage(file="images/card_back.png")
+card_background = flash_card_canvas.create_image(400, 263, image=flash_card_front_image)
+
+picked_language = flash_card_canvas.create_text(400, 150, text="", font=LANGUAGE_FONT)
+word_text = flash_card_canvas.create_text(400, 263, text="", font=WORD_FONT)
 
 flash_card_canvas.config(bg=BACKGROUND_COLOR, highlightthickness=0)
 flash_card_canvas.grid(row=0, column=0, columnspan=2)
@@ -99,6 +113,8 @@ wrong_word_button.grid(row=1, column=0)
 right_image = PhotoImage(file="images/right.png")
 right_word_button = Button(image=right_image, command=pick_random_word)
 right_word_button.grid(row=1, column=1)
+
+pick_random_word()
 
 # -------------------- Menu Bar import area -------------------- #
 menubar = Menu(window)

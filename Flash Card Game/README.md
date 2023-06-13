@@ -1,5 +1,14 @@
 # Flash Card Game 🪪
 
+### Front Card
+
+![alter text](https://github.com/sifisKoen/Pi-Playground/blob/main/ReadMe%20images/Flash_card_front.png)
+
+
+### Back Card
+
+![alter text](https://github.com/sifisKoen/Pi-Playground/blob/main/ReadMe%20images/Flash_card_back.png)
+
 This is a Flash Card Game for learning new words from other languages. Currently there are only three languages.
 
 - English

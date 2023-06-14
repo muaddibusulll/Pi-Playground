@@ -5,11 +5,11 @@ import random
 quotes_list = open("quotes.txt").readlines()
 
 # Add your mail here. From witch you want to send mail.
-MY_EMAIL = "difuslo@hotmail.com"
+MY_EMAIL = "your mail"
 # Add your mail Password.
-MY_PASSWORD = "1234567~!A"
+MY_PASSWORD = "your_password"
 
-TO_ADDRESS = "sifis.k.i@gmail.com"
+TO_ADDRESS = "mail you want to send"
 
 def check_day():
     if dt.datetime.now().weekday() == 2:

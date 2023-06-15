@@ -12,8 +12,6 @@ today = dt.datetime.now()
 MY_EMAIL = "your-mail"
 MY_PASSWORD = "your-password"
 
-TO_ADDRESS = "mail-you-want-to-send"
-
 def pick_random_letter_copy_letter():
     random_letter = random.choice(os.listdir("letter_templates"))
 
@@ -25,7 +23,7 @@ def rewrite_letter(birthday_name):
         new_letter_content = letter_content.replace('[NAME]', birthday_name)
         return new_letter_content
 
-def send_mail(name, content):
+def send_mail(name, content, to_address):
     with smtplib.SMTP("smtp-mail.outlook.com", 587) as connection:
 
             # Start a secure encrypted connection.
@@ -37,7 +35,7 @@ def send_mail(name, content):
             # Send my mail
             connection.sendmail(
                 from_addr=MY_EMAIL, 
-                to_addrs=TO_ADDRESS, 
+                to_addrs=to_address, 
                 msg=f"Subject: Happy Birthday {name}\n\n{content}"
                 )
 
@@ -46,9 +44,10 @@ def check_day():
     for day in birthdays:
         birthday_month = day["month"]
         birthday_day = day["day"]
-        name = day["name"]  
+        name = day["name"]
         if (today.month == birthday_month) and (today.day == birthday_day):
-            send_mail(name, rewrite_letter(birthday_name=name))
+            to_address = day["email"]
+            send_mail(name, rewrite_letter(birthday_name=name), to_address)
             
 
 

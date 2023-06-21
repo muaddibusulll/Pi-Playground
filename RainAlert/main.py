@@ -1,3 +1,6 @@
+# Weather API link.
+# https://openweathermap.org/
+
 import requests
 
 city = "Stockholm"

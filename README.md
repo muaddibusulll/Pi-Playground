@@ -1,6 +1,6 @@
 # Pi-Playground
 
-![GitHub repo file count][files] ![GitHub repo size][repo_size] ![GitHub top language][language]
+![GitHub repo file count][files] ![GitHub repo size][repo_size] ![GitHub top language][language] ![License][license]
 
 ## Welcome to my playground 🖐️
 
@@ -120,3 +120,4 @@ I would like to mention that each project has each own documentation. With some 
 [files]: https://img.shields.io/github/directory-file-count/sifisKoen/Pi-Playground
 [repo_size]: https://img.shields.io/github/repo-size/sifisKoen/Pi-Playground
 [language]: https://img.shields.io/github/languages/top/sifisKoen/Pi-Playground
+[license]: https://img.shields.io/github/license/sifisKoen/Pi-Playground

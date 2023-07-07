@@ -3,7 +3,8 @@ from datetime import date, timedelta, datetime
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
-STOCKS_API_KEY = "your_API"
+STOCKS_API_KEY = "your stock API key"
+NEWS_API_KEY = "your news API key"
 API_function = "TIME_SERIES_DAILY_ADJUSTED"
 
 def get_stock() -> dict:
@@ -64,9 +65,32 @@ def return_the_percentage() -> float:
 
     return round(percentage_difference, 2)
 
-def get_news(percentage_number: float):
+def get_all_news():
+    last_month = date.today() - timedelta(days=30)
 
-    if (percentage_number > 5) or (percentage_number < 5):
-        print("Get news")
+    news_params = {
+        "q" : COMPANY_NAME,
+        "from" : last_month,
+        "sortBy" : "popularity",
+        "apiKey" : NEWS_API_KEY
+    }
+    news_url = "https://newsapi.org/v2/everything"
+    news_response = requests.get(news_url, params=news_params)
+    news_response.raise_for_status()
+    news_data = news_response.json()
+    first_three_articles = news_data["articles"][:3]
+    return first_three_articles
 
-get_news(percentage_number=return_the_percentage())
+def get_news_for_the_company(percentage_number: float):
+    printable_string = ""
+    if (percentage_number > 5): 
+        for article in get_all_news():
+            printable_string += f"{STOCK} 🔺 {percentage_number}%\nHeadline: {article['title']}\nDescription: {article['description']}\n"            
+    elif (percentage_number < 5):
+        for article in get_all_news():
+            printable_string += f"{STOCK} 🔻 {percentage_number}%\nHeadline: {article['title']}\nDescription: {article['description']}\n"
+
+    return printable_string
+
+
+print(get_news_for_the_company(percentage_number=return_the_percentage()))

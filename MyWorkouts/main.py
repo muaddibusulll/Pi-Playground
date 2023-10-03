@@ -1,9 +1,17 @@
 import requests
+from datetime import datetime
 
-APPLICATION_ID = "your application ID"
-API_KEY = "your API Key"
+APPLICATION_ID = "<Your application ID>"
+API_KEY = "<Your API key>"
+
+# You can find these information from Sheety API dashboard 
+USERNAME = "<Your Sheety username>"
+PROJECT_NAME = "<Your project name>"
+SHEET_NAME = "<Your sheet name>"
+SHEETY_END_POINT = "<Your end point>"
 
 exercise_post_url = "https://trackapi.nutritionix.com/v2/natural/exercise"
+sheety_url = f"https://api.sheety.co/{USERNAME}/{PROJECT_NAME}/{SHEET_NAME}"
 
 def get_headers():
 
@@ -25,6 +33,32 @@ def exercise_post(post_url):
 
     make_post = requests.post(url=post_url, json=workout_exercise, headers=get_headers())
 
-    return make_post
+    return make_post.json()
 
-print(exercise_post(post_url=exercise_post_url).text)
+def get_all_workouts_from_sheet():
+
+    get_workouts = requests.get(url=sheety_url)
+    return get_workouts.json()
+
+
+def add_workout_to_sheet():
+
+    user_exercise = exercise_post(post_url=exercise_post_url)["exercises"]
+    
+    current_day = datetime.now().strftime('%d/%m/%Y')
+    current_time =  datetime.now().strftime('%H:%M:%S')
+
+    for workout in [workout for workout in user_exercise]:
+        sheet_input = {
+            f"{SHEETY_END_POINT}" : {
+                "date": current_day,
+                "time": current_time,
+                "exercise": workout['name'].title(),
+                "duration": workout['duration_min'],
+                "calories": workout['nf_calories']
+            }
+        }
+        requests.post(url=sheety_url, json=sheet_input)
+        print(sheet_input)
+        
+    

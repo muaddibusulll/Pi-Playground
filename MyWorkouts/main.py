@@ -9,17 +9,25 @@ USERNAME = "<Your Sheety username>"
 PROJECT_NAME = "<Your project name>"
 SHEET_NAME = "<Your sheet name>"
 SHEETY_END_POINT = "<Your end point>"
+SHEETY_AUTHENTICATION_TOKEN = "<Your authentication token"
+AUTHENTICATION_TYPE = "<Add your authentication type>"
 
 exercise_post_url = "https://trackapi.nutritionix.com/v2/natural/exercise"
 sheety_url = f"https://api.sheety.co/{USERNAME}/{PROJECT_NAME}/{SHEET_NAME}"
 
-def get_headers():
+def get_track_headers():
 
     headers = {
         "x-app-id": APPLICATION_ID,
         "x-app-key": API_KEY,
         "x-remote-user-id": "0"
     }
+    return headers
+
+def get_sheety_headers():
+
+    headers = {"Authorization": f"{AUTHENTICATION_TYPE} {SHEETY_AUTHENTICATION_TOKEN}"}
+
     return headers
 
 def exercise_post(post_url):
@@ -31,7 +39,7 @@ def exercise_post(post_url):
         "query": user_exercise
     }
 
-    make_post = requests.post(url=post_url, json=workout_exercise, headers=get_headers())
+    make_post = requests.post(url=post_url, json=workout_exercise, headers=get_track_headers())
 
     return make_post.json()
 
@@ -47,6 +55,7 @@ def add_workout_to_sheet():
     
     current_day = datetime.now().strftime('%d/%m/%Y')
     current_time =  datetime.now().strftime('%H:%M:%S')
+    
 
     for workout in [workout for workout in user_exercise]:
         sheet_input = {
@@ -58,7 +67,7 @@ def add_workout_to_sheet():
                 "calories": workout['nf_calories']
             }
         }
-        requests.post(url=sheety_url, json=sheet_input)
+        requests.post(url=sheety_url, json=sheet_input, headers=get_sheety_headers())
         print(sheet_input)
-        
-    
+
+add_workout_to_sheet()
